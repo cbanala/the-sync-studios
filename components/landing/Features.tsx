@@ -63,7 +63,7 @@ export default function Features() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <p className="text-xs font-semibold tracking-[4px] uppercase mb-4" style={{ color: '#a78bfa' }}>
+        <p className="text-xs font-semibold tracking-[4px] uppercase mb-4" style={{ color: 'var(--color-purple)' }}>
           What We Offer
         </p>
         <h2 className="font-display text-6xl md:text-7xl tracking-widest gradient-text-dance">

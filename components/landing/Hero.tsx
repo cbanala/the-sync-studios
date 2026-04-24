@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 text-center"
-      style={{ background: 'linear-gradient(135deg, #0d0d1a 0%, #1a0d2e 100%)' }}
+      style={{ background: 'linear-gradient(135deg, var(--color-base) 0%, #1a0d2e 100%)' }}
     >
       {/* Floating sprites background */}
       <FloatingSprite role="dancer"        style={{ top: '10%',  left: '8%'   }} size={64} />
@@ -31,19 +31,13 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           className="text-xs font-semibold tracking-[6px] uppercase mb-6"
-          style={{ color: '#a78bfa' }}
+          style={{ color: 'var(--color-purple)' }}
         >
           Ideas → Reality · Concept → Creation
         </motion.p>
 
         <h1
-          className="font-display text-7xl md:text-[10rem] leading-none tracking-widest mb-6"
-          style={{
-            background: 'linear-gradient(90deg, #a78bfa, #ec4899, #f97316)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
+          className="font-display text-7xl md:text-[10rem] leading-none tracking-widest mb-6 gradient-text-hero"
         >
           THE SYNC<br />STUDIOS
         </h1>
@@ -67,7 +61,7 @@ export default function Hero() {
           <Link
             href="/auth"
             className="px-10 py-4 rounded-full font-semibold text-white text-lg transition-all hover:-translate-y-1 hover:brightness-110"
-            style={{ background: 'linear-gradient(90deg, #a78bfa, #ec4899)' }}
+            style={{ background: 'linear-gradient(90deg, var(--color-purple), var(--color-pink))' }}
           >
             Enter the Studios ⚡
           </Link>
@@ -83,7 +77,7 @@ export default function Hero() {
       {/* Bottom gradient fade */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, transparent, #0d0d1a)' }}
+        style={{ background: 'linear-gradient(to bottom, transparent, var(--color-base))' }}
       />
     </section>
   )

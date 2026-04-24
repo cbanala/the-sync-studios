@@ -23,7 +23,7 @@ export default function CTASection() {
         <Link
           href="/auth"
           className="inline-block px-12 py-5 rounded-full font-semibold text-white text-xl transition-all hover:-translate-y-1 hover:brightness-110"
-          style={{ background: 'linear-gradient(90deg, #a78bfa, #ec4899, #f97316)' }}
+          style={{ background: 'linear-gradient(90deg, var(--color-purple), var(--color-pink), var(--color-orange))' }}
         >
           Enter the Studios ⚡
         </Link>

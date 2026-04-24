@@ -57,3 +57,11 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+.gradient-text-hero {
+  background: linear-gradient(90deg, var(--color-purple), var(--color-pink), var(--color-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}

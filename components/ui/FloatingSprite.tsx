@@ -1,12 +1,12 @@
 'use client'
 
-interface FloatingSpriteProp {
+interface FloatingSpriteProps {
   role: 'dancer' | 'filmmaker' | 'musician' | 'editor' | 'actor' | 'artist' | 'choreographer'
   style?: React.CSSProperties
   size?: number
 }
 
-const ROLE_EMOJI: Record<FloatingSpriteProp['role'], string> = {
+const ROLE_EMOJI: Record<FloatingSpriteProps['role'], string> = {
   dancer: '💃',
   filmmaker: '🎬',
   musician: '🎵',
@@ -16,7 +16,7 @@ const ROLE_EMOJI: Record<FloatingSpriteProp['role'], string> = {
   choreographer: '✨',
 }
 
-const ROLE_COLOR: Record<FloatingSpriteProp['role'], string> = {
+const ROLE_COLOR: Record<FloatingSpriteProps['role'], string> = {
   dancer: '#a78bfa',
   filmmaker: '#f97316',
   musician: '#06b6d4',
@@ -26,19 +26,20 @@ const ROLE_COLOR: Record<FloatingSpriteProp['role'], string> = {
   choreographer: '#ec4899',
 }
 
-const ROLE_DURATION: Record<FloatingSpriteProp['role'], number> = {
+const ROLE_DURATION: Record<FloatingSpriteProps['role'], number> = {
   dancer: 6, filmmaker: 8, musician: 5, editor: 9, actor: 7, artist: 4, choreographer: 6,
 }
-const ROLE_DELAY: Record<FloatingSpriteProp['role'], number> = {
+const ROLE_DELAY: Record<FloatingSpriteProps['role'], number> = {
   dancer: 0, filmmaker: 1.5, musician: 0.8, editor: 2.4, actor: 1.2, artist: 2.0, choreographer: 0.4,
 }
 
-export default function FloatingSprite({ role, style, size = 56 }: FloatingSpriteProp) {
+export default function FloatingSprite({ role, style, size = 56 }: FloatingSpriteProps) {
   const duration = ROLE_DURATION[role]
   const delay = ROLE_DELAY[role]
 
   return (
     <div
+      aria-hidden="true"
       style={{
         ...style,
         width: size,
