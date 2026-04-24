@@ -26,14 +26,20 @@ export default function SignupForm() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [role, setRole] = useState<Role | null>(null)
+  const [selectedRoles, setSelectedRoles] = useState<Role[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  function toggleRole(role: Role) {
+    setSelectedRoles(prev =>
+      prev.includes(role) ? prev.filter(r => r !== role) : [...prev, role]
+    )
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (step === 'details') { setStep('role'); return }
-    if (!role) { setError('Please pick your creative role.'); return }
+    if (selectedRoles.length === 0) { setError('Pick at least one that describes you.'); return }
 
     setLoading(true)
     setError('')
@@ -51,7 +57,8 @@ export default function SignupForm() {
         id: data.user.id,
         username: username.toLowerCase().trim(),
         full_name: fullName.trim(),
-        role,
+        role: selectedRoles[0],
+        roles: selectedRoles,
       })
 
       if (profileError) {
@@ -78,8 +85,9 @@ export default function SignupForm() {
               required
               value={fullName}
               onChange={e => setFullName(e.target.value)}
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
-              placeholder="Chethan Banala"
+              className="w-full rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none"
+              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+              placeholder="Your name"
             />
           </div>
           <div>
@@ -90,8 +98,9 @@ export default function SignupForm() {
               required
               value={username}
               onChange={e => setUsername(e.target.value)}
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
-              placeholder="chethanb"
+              className="w-full rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none"
+              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+              placeholder="yourhandle"
             />
           </div>
           <div>
@@ -102,7 +111,8 @@ export default function SignupForm() {
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+              className="w-full rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none"
+              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
               placeholder="you@example.com"
             />
           </div>
@@ -115,32 +125,49 @@ export default function SignupForm() {
               minLength={8}
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+              className="w-full rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none"
+              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
               placeholder="8+ characters"
             />
           </div>
-          <Button type="submit">Next — Pick Your Role →</Button>
+          <Button type="submit">Next — Pick Your Roles →</Button>
         </>
       ) : (
         <>
-          <p className="text-slate-400 text-sm text-center">What best describes you?</p>
-          <div className="grid grid-cols-2 gap-3">
-            {ROLES.map(r => (
-              <button
-                key={r.value}
-                type="button"
-                onClick={() => setRole(r.value)}
-                className="flex items-center gap-3 p-3 rounded-xl border transition-all text-left"
-                style={{
-                  background: role === r.value ? 'rgba(167,139,250,0.15)' : 'rgba(255,255,255,0.03)',
-                  borderColor: role === r.value ? 'var(--color-purple)' : '#334155',
-                }}
-              >
-                <span className="text-2xl">{r.emoji}</span>
-                <span className="text-sm font-medium text-white">{r.label}</span>
-              </button>
-            ))}
+          <div className="text-center">
+            <p className="text-white font-semibold mb-1">What best describes you?</p>
+            <p className="text-slate-500 text-xs">Select all that apply</p>
           </div>
+          <div className="grid grid-cols-2 gap-3">
+            {ROLES.map(r => {
+              const selected = selectedRoles.includes(r.value)
+              return (
+                <button
+                  key={r.value}
+                  type="button"
+                  onClick={() => toggleRole(r.value)}
+                  className="flex items-center gap-3 p-3 rounded-xl border transition-all text-left"
+                  style={{
+                    background: selected ? 'rgba(237,224,196,0.12)' : 'rgba(255,255,255,0.03)',
+                    borderColor: selected ? 'var(--color-cream)' : 'rgba(255,255,255,0.1)',
+                  }}
+                >
+                  <span className="text-2xl">{r.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm font-medium text-white">{r.label}</span>
+                  </div>
+                  {selected && (
+                    <span style={{ color: 'var(--color-cream)' }} className="text-xs font-bold flex-shrink-0">✓</span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+          {selectedRoles.length > 0 && (
+            <p className="text-center text-xs" style={{ color: 'var(--color-cream)' }}>
+              {selectedRoles.length} selected
+            </p>
+          )}
           <Button type="submit" loading={loading}>Enter the Studios ⚡</Button>
           <button type="button" onClick={() => setStep('details')} className="text-slate-500 text-sm hover:text-slate-300 transition-colors">
             ← Back

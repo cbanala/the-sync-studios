@@ -12,12 +12,30 @@ export interface Profile {
   username: string
   full_name: string
   role: Role
+  roles: Role[]
   bio: string
   avatar_url: string
   instagram: string
   calendly_url: string
   is_admin: boolean
   created_at: string
+}
+
+export interface RoomSuggestion {
+  label: string
+  emoji: string
+  description: string
+  href: string
+}
+
+export const ROLE_ROOM: Record<Role, RoomSuggestion> = {
+  dancer:        { label: 'Dance Studio',    emoji: '💃', description: 'Movement, freestyle, choreography',      href: '/rooms/dance' },
+  choreographer: { label: 'Rehearsal Space', emoji: '✨', description: 'Blocking, direction, performance',       href: '/rooms/rehearsal' },
+  filmmaker:     { label: 'Film Room',       emoji: '🎬', description: 'Shoots, direction, cinematography',     href: '/rooms/film' },
+  editor:        { label: 'Edit Suite',      emoji: '🎧', description: 'Post-production, color, cuts',          href: '/rooms/edit' },
+  musician:      { label: 'Music Studio',    emoji: '🎵', description: 'Recording, composition, production',    href: '/rooms/music' },
+  actor:         { label: 'Acting Studio',   emoji: '🎭', description: 'Scene work, improv, auditions',         href: '/rooms/acting' },
+  artist:        { label: 'Visual Lab',      emoji: '🎨', description: 'Design, illustration, concept art',     href: '/rooms/art' },
 }
 
 export const ROLE_EMOJI: Record<Role, string> = {
