@@ -54,7 +54,7 @@ export default async function DashboardPage() {
         {profile && (
           <div
             className="rounded-2xl p-8 mb-8"
-            style={{ background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.2)' }}
+            style={{ background: 'rgba(237,224,196,0.06)', border: '1px solid rgba(237,224,196,0.2)' }}
           >
             <p className="text-4xl mb-3">{ROLE_EMOJI[profile.role]}</p>
             <h2 className="font-display text-4xl tracking-wider text-white mb-1">
@@ -68,9 +68,9 @@ export default async function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { href: '/map',    label: 'Enter the Map', emoji: '🗺️', color: '#a78bfa' },
-            { href: '/dance',  label: 'Dance Studio',  emoji: '💃', color: '#ec4899' },
-            { href: '/groups', label: 'My Groups',     emoji: '⚡', color: '#06b6d4' },
+            { href: '/map',    label: 'Enter the Map', emoji: '🗺️', color: '#EDE0C4' },
+            { href: '/dance',  label: 'Dance Studio',  emoji: '💃', color: '#EDE0C4' },
+            { href: '/groups', label: 'My Groups',     emoji: '⚡', color: '#EDE0C4' },
           ].map(item => (
             <Link
               key={item.href}

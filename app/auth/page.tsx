@@ -36,8 +36,8 @@ export default function AuthPage() {
               onClick={() => setMode(m)}
               className="flex-1 py-2 rounded-full text-sm font-semibold transition-all"
               style={{
-                background: mode === m ? 'linear-gradient(90deg, var(--color-purple), var(--color-pink))' : 'transparent',
-                color: mode === m ? '#fff' : '#64748b',
+                background: mode === m ? 'var(--color-cream)' : 'transparent',
+                color: mode === m ? '#0d0d0d' : '#64748b',
               }}
             >
               {m === 'signup' ? 'Join the Studios' : 'Sign In'}

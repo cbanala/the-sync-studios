@@ -32,7 +32,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           className="text-xs font-semibold tracking-[6px] uppercase mb-6"
-          style={{ color: 'var(--color-purple)' }}
+          style={{ color: 'var(--color-cream)' }}
         >
           Ideas → Reality · Concept → Creation
         </motion.p>
@@ -64,14 +64,15 @@ export default function Hero() {
         >
           <Link
             href="/auth"
-            className="px-10 py-4 rounded-full font-semibold text-white text-lg transition-all hover:-translate-y-1 hover:brightness-110"
-            style={{ background: 'linear-gradient(90deg, var(--color-purple), var(--color-pink))' }}
+            className="px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1 hover:brightness-110"
+            style={{ background: 'var(--color-cream)', color: '#0d0d0d' }}
           >
             Enter the Studios ⚡
           </Link>
           <Link
             href="#features"
-            className="px-10 py-4 rounded-full font-semibold text-slate-300 text-lg border border-slate-600 hover:border-slate-400 transition-all hover:-translate-y-1"
+            className="px-10 py-4 rounded-full font-semibold text-lg transition-all hover:-translate-y-1"
+            style={{ color: 'var(--color-cream)', border: '1px solid rgba(237,224,196,0.35)' }}
           >
             See How It Works
           </Link>

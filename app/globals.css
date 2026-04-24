@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-base: #0d0d1a;
-  --color-surface: #13132a;
+  --color-base: #0d0d0d;
+  --color-surface: #1a1a1a;
   --color-text: #ffffff;
   --color-text-muted: #a0a0b8;
   --color-border: rgba(255,255,255,0.1);
+  --color-cream: #EDE0C4;
 
   --color-purple: #a78bfa;
   --color-pink: #ec4899;
@@ -35,7 +36,7 @@ body {
 }
 
 .gradient-text-dance {
-  background: linear-gradient(90deg, var(--color-purple), var(--color-pink));
+  background: linear-gradient(90deg, var(--color-cream), #c8b49a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -43,7 +44,7 @@ body {
 }
 
 .gradient-text-film {
-  background: linear-gradient(90deg, var(--color-orange), var(--color-red));
+  background: linear-gradient(90deg, var(--color-cream), #c8b49a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -51,7 +52,7 @@ body {
 }
 
 .gradient-text-music {
-  background: linear-gradient(90deg, var(--color-cyan), var(--color-blue));
+  background: linear-gradient(90deg, var(--color-cream), #c8b49a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -59,7 +60,7 @@ body {
 }
 
 .gradient-text-hero {
-  background: linear-gradient(90deg, var(--color-purple), var(--color-pink), var(--color-orange));
+  background: linear-gradient(90deg, var(--color-cream), #c8b49a, var(--color-cream));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
