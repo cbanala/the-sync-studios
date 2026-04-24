@@ -11,7 +11,7 @@ export default function Button({ variant = 'primary', loading, children, classNa
   return (
     <button
       className={`${base} ${variant === 'primary' ? primary : ghost} ${className}`}
-      style={variant === 'primary' ? { background: 'linear-gradient(90deg, var(--color-purple), var(--color-pink))' } : {}}
+      style={variant === 'primary' ? { background: 'var(--color-cream)', color: '#0d0d0d' } : {}}
       disabled={loading || props.disabled}
       {...props}
     >

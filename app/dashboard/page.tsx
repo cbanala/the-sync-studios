@@ -2,13 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-
-interface Profile {
-  id: string
-  username: string
-  full_name: string
-  role: 'dancer' | 'filmmaker' | 'musician' | 'editor' | 'actor' | 'artist' | 'choreographer'
-}
+import { Profile, ROLE_EMOJI } from '@/lib/types'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -23,16 +17,10 @@ export default async function DashboardPage() {
     .single()
 
   if (profileError && profileError.code !== 'PGRST116') {
-    // PGRST116 = row not found (new user, profile not yet created) — handle gracefully
     console.error('Profile fetch error:', profileError.message)
   }
 
   const profile = data as Profile | null
-
-  const ROLE_EMOJI: Record<Profile['role'], string> = {
-    dancer: '💃', choreographer: '✨', filmmaker: '🎬',
-    editor: '🎧', musician: '🎵', actor: '🎭', artist: '🎨',
-  }
 
   return (
     <main
@@ -49,6 +37,23 @@ export default async function DashboardPage() {
               alt="The Sync Studios"
             />
           </Link>
+          {profile && (
+            <div className="flex items-center gap-3">
+              <Link
+                href={`/profile/${profile.username}`}
+                className="text-sm text-slate-500 hover:text-slate-300 transition-colors"
+              >
+                View Profile
+              </Link>
+              <Link
+                href="/dashboard/edit"
+                className="px-4 py-2 rounded-full text-sm font-semibold transition-all hover:brightness-110"
+                style={{ background: 'var(--color-cream)', color: '#0d0d0d' }}
+              >
+                Edit Profile
+              </Link>
+            </div>
+          )}
         </div>
 
         {profile && (
