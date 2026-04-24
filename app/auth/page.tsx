@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import SignupForm from '@/components/auth/SignupForm'
 import LoginForm from '@/components/auth/LoginForm'
 import Link from 'next/link'
@@ -16,10 +17,17 @@ export default function AuthPage() {
     >
       <div className="w-full max-w-md">
         {/* Logo */}
-        <Link href="/" className="block text-center mb-8">
-          <h1 className="font-display text-4xl tracking-widest gradient-text-dance">
-            THE SYNC STUDIOS
-          </h1>
+        <Link href="/" className="flex justify-center mb-8">
+          <div className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-[#EDE0C4]/20">
+            <Image
+              src="/logo.png"
+              width={80}
+              height={80}
+              alt="The Sync Studios"
+              className="w-full h-full object-cover"
+              priority
+            />
+          </div>
         </Link>
 
         {/* Toggle */}

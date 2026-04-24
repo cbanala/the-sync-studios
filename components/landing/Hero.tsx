@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import FloatingSprite from '@/components/ui/FloatingSprite'
 
 export default function Hero() {
@@ -36,11 +37,16 @@ export default function Hero() {
           Ideas → Reality · Concept → Creation
         </motion.p>
 
-        <h1
-          className="font-display text-7xl md:text-[10rem] leading-none tracking-widest mb-6 gradient-text-hero"
-        >
-          THE SYNC<br />STUDIOS
-        </h1>
+        <div className="w-52 h-52 rounded-full overflow-hidden mx-auto mb-8 ring-2 ring-[#EDE0C4]/20">
+          <Image
+            src="/logo.png"
+            width={208}
+            height={208}
+            alt="The Sync Studios"
+            className="w-full h-full object-cover"
+            priority
+          />
+        </div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}

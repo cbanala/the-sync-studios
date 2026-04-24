@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
 
 interface Profile {
@@ -41,9 +42,15 @@ export default async function DashboardPage() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-12">
           <Link href="/">
-            <h1 className="font-display text-3xl tracking-widest gradient-text-dance">
-              THE SYNC STUDIOS
-            </h1>
+            <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#EDE0C4]/20">
+              <Image
+                src="/logo.png"
+                width={48}
+                height={48}
+                alt="The Sync Studios"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </Link>
         </div>
 
