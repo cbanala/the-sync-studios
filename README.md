@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Sync Studios
+
+A creative collaboration platform — [thesyncstudios.com](https://thesyncstudios.com)
+
+Built with Next.js App Router + TypeScript + Tailwind CSS + Supabase + Vercel.
+
+---
+
+This project was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
