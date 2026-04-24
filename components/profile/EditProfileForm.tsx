@@ -4,9 +4,19 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { uploadAvatar } from '@/lib/supabase/storage'
-import { Profile } from '@/lib/types'
+import { Profile, Role, ROLE_EMOJI, ROLE_COLOR } from '@/lib/types'
 import Button from '@/components/ui/Button'
 import AvatarUpload from '@/components/ui/AvatarUpload'
+
+const ALL_ROLES: { value: Role; label: string }[] = [
+  { value: 'dancer',        label: 'Dancer' },
+  { value: 'choreographer', label: 'Choreographer' },
+  { value: 'filmmaker',     label: 'Filmmaker' },
+  { value: 'editor',        label: 'Editor' },
+  { value: 'musician',      label: 'Musician' },
+  { value: 'actor',         label: 'Actor' },
+  { value: 'artist',        label: 'Visual Artist' },
+]
 
 interface EditProfileFormProps {
   profile: Profile
@@ -18,9 +28,20 @@ export default function EditProfileForm({ profile }: EditProfileFormProps) {
   const [instagram, setInstagram] = useState(profile.instagram ?? '')
   const [calendlyUrl, setCalendlyUrl] = useState(profile.calendly_url ?? '')
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
+  const [selectedRoles, setSelectedRoles] = useState<Role[]>(
+    profile.roles?.length ? profile.roles : [profile.role]
+  )
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [saved, setSaved] = useState(false)
+
+  function toggleRole(role: Role) {
+    setSelectedRoles(prev =>
+      prev.includes(role)
+        ? prev.length > 1 ? prev.filter(r => r !== role) : prev  // keep at least one
+        : [...prev, role]
+    )
+  }
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
@@ -48,6 +69,8 @@ export default function EditProfileForm({ profile }: EditProfileFormProps) {
         instagram: instagram.replace('@', '').trim(),
         calendly_url: calendlyUrl.trim(),
         avatar_url,
+        roles: selectedRoles,
+        role: selectedRoles[0],
       })
       .eq('id', profile.id)
 
@@ -69,10 +92,35 @@ export default function EditProfileForm({ profile }: EditProfileFormProps) {
         onChange={setAvatarFile}
       />
 
+      {/* Roles */}
       <div>
-        <label htmlFor="edit-bio" className="block text-sm text-slate-400 mb-1">
-          Bio
-        </label>
+        <p className="text-sm text-slate-400 mb-2">What describes you? <span className="text-slate-600 text-xs">(select all that apply)</span></p>
+        <div className="grid grid-cols-2 gap-2">
+          {ALL_ROLES.map(r => {
+            const selected = selectedRoles.includes(r.value)
+            const color = ROLE_COLOR[r.value]
+            return (
+              <button
+                key={r.value}
+                type="button"
+                onClick={() => toggleRole(r.value)}
+                className="flex items-center gap-2.5 p-3 rounded-xl border transition-all text-left"
+                style={{
+                  background: selected ? `${color}18` : 'rgba(255,255,255,0.03)',
+                  borderColor: selected ? `${color}88` : 'rgba(255,255,255,0.08)',
+                }}
+              >
+                <span className="text-xl">{ROLE_EMOJI[r.value]}</span>
+                <span className="text-sm font-medium text-white flex-1">{r.label}</span>
+                {selected && <span className="text-xs font-bold flex-shrink-0" style={{ color }}>✓</span>}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="edit-bio" className="block text-sm text-slate-400 mb-1">Bio</label>
         <textarea
           id="edit-bio"
           value={bio}
@@ -87,9 +135,7 @@ export default function EditProfileForm({ profile }: EditProfileFormProps) {
       </div>
 
       <div>
-        <label htmlFor="edit-instagram" className="block text-sm text-slate-400 mb-1">
-          Instagram
-        </label>
+        <label htmlFor="edit-instagram" className="block text-sm text-slate-400 mb-1">Instagram</label>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 select-none">@</span>
           <input
@@ -105,9 +151,7 @@ export default function EditProfileForm({ profile }: EditProfileFormProps) {
       </div>
 
       <div>
-        <label htmlFor="edit-calendly" className="block text-sm text-slate-400 mb-1">
-          Calendly URL
-        </label>
+        <label htmlFor="edit-calendly" className="block text-sm text-slate-400 mb-1">Calendly URL</label>
         <input
           id="edit-calendly"
           type="url"
