@@ -1,8 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --color-base: #0d0d1a;
+  --color-surface: #13132a;
+  --color-text: #ffffff;
+  --color-text-muted: #a0a0b8;
+  --color-border: rgba(255,255,255,0.1);
+
+  --color-purple: #a78bfa;
+  --color-pink: #ec4899;
+  --color-orange: #f97316;
+  --color-red: #ef4444;
+  --color-cyan: #06b6d4;
+  --color-blue: #3b82f6;
+
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
 
@@ -16,36 +27,33 @@
   50%       { transform: translateY(-20px); }
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  background-color: #0d0d1a;
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  background: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-body);
   min-height: 100vh;
 }
 
 .gradient-text-dance {
-  background: linear-gradient(90deg, #a78bfa, #ec4899);
+  background: linear-gradient(90deg, var(--color-purple), var(--color-pink));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
 
 .gradient-text-film {
-  background: linear-gradient(90deg, #f97316, #ef4444);
+  background: linear-gradient(90deg, var(--color-orange), var(--color-red));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
 
 .gradient-text-music {
-  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
 }
