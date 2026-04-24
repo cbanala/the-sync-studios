@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "The Sync Studios",
+  title: "The Sync Studios — Find Your Creative Partner",
   description: "Creative collaboration platform for dancers, filmmakers, musicians, and artists",
 };
 
