@@ -42,15 +42,12 @@ export default async function DashboardPage() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-12">
           <Link href="/">
-            <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#EDE0C4]/20">
-              <Image
-                src="/logo.png"
-                width={48}
-                height={48}
-                alt="The Sync Studios"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <Image
+              src="/logo.png"
+              width={56}
+              height={56}
+              alt="The Sync Studios"
+            />
           </Link>
         </div>
 

@@ -37,16 +37,14 @@ export default function Hero() {
           Ideas → Reality · Concept → Creation
         </motion.p>
 
-        <div className="w-52 h-52 rounded-full overflow-hidden mx-auto mb-8 ring-2 ring-[#EDE0C4]/20">
-          <Image
-            src="/logo.png"
-            width={208}
-            height={208}
-            alt="The Sync Studios"
-            className="w-full h-full object-cover"
-            priority
-          />
-        </div>
+        <Image
+          src="/logo.png"
+          width={240}
+          height={240}
+          alt="The Sync Studios"
+          className="mx-auto mb-8 drop-shadow-2xl"
+          priority
+        />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}

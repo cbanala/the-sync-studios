@@ -18,16 +18,14 @@ export default function AuthPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <Link href="/" className="flex justify-center mb-8">
-          <div className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-[#EDE0C4]/20">
-            <Image
-              src="/logo.png"
-              width={80}
-              height={80}
-              alt="The Sync Studios"
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            width={96}
+            height={96}
+            alt="The Sync Studios"
+            className="drop-shadow-xl"
+            priority
+          />
         </Link>
 
         {/* Toggle */}
