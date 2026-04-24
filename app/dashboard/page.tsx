@@ -2,19 +2,33 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
+interface Profile {
+  id: string
+  username: string
+  full_name: string
+  role: 'dancer' | 'filmmaker' | 'musician' | 'editor' | 'actor' | 'artist' | 'choreographer'
+}
+
 export default async function DashboardPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) redirect('/auth')
 
-  const { data: profile } = await supabase
+  const { data, error: profileError } = await supabase
     .from('profiles')
     .select('*')
     .eq('id', user.id)
     .single()
 
-  const ROLE_EMOJI: Record<string, string> = {
+  if (profileError && profileError.code !== 'PGRST116') {
+    // PGRST116 = row not found (new user, profile not yet created) — handle gracefully
+    console.error('Profile fetch error:', profileError.message)
+  }
+
+  const profile = data as Profile | null
+
+  const ROLE_EMOJI: Record<Profile['role'], string> = {
     dancer: '💃', choreographer: '✨', filmmaker: '🎬',
     editor: '🎧', musician: '🎵', actor: '🎭', artist: '🎨',
   }
@@ -50,9 +64,9 @@ export default async function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { href: '/map', label: 'Enter the Map', emoji: '🗺️', color: 'var(--color-purple)' },
-            { href: '/dance', label: 'Dance Studio', emoji: '💃', color: 'var(--color-pink)' },
-            { href: '/groups', label: 'My Groups', emoji: '⚡', color: '#06b6d4' },
+            { href: '/map',    label: 'Enter the Map', emoji: '🗺️', color: '#a78bfa' },
+            { href: '/dance',  label: 'Dance Studio',  emoji: '💃', color: '#ec4899' },
+            { href: '/groups', label: 'My Groups',     emoji: '⚡', color: '#06b6d4' },
           ].map(item => (
             <Link
               key={item.href}

@@ -34,8 +34,9 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleLogin} className="flex flex-col gap-5">
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Email</label>
+        <label htmlFor="login-email" className="block text-sm text-slate-400 mb-1">Email</label>
         <input
+          id="login-email"
           type="email"
           required
           value={email}
@@ -45,8 +46,9 @@ export default function LoginForm() {
         />
       </div>
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Password</label>
+        <label htmlFor="login-password" className="block text-sm text-slate-400 mb-1">Password</label>
         <input
+          id="login-password"
           type="password"
           required
           value={password}

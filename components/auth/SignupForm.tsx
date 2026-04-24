@@ -67,11 +67,13 @@ export default function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      {error && <p className="text-red-400 text-sm text-center">{error}</p>}
       {step === 'details' ? (
         <>
           <div>
-            <label className="block text-sm text-slate-400 mb-1">Full Name</label>
+            <label htmlFor="signup-fullname" className="block text-sm text-slate-400 mb-1">Full Name</label>
             <input
+              id="signup-fullname"
               type="text"
               required
               value={fullName}
@@ -81,8 +83,9 @@ export default function SignupForm() {
             />
           </div>
           <div>
-            <label className="block text-sm text-slate-400 mb-1">Username</label>
+            <label htmlFor="signup-username" className="block text-sm text-slate-400 mb-1">Username</label>
             <input
+              id="signup-username"
               type="text"
               required
               value={username}
@@ -92,8 +95,9 @@ export default function SignupForm() {
             />
           </div>
           <div>
-            <label className="block text-sm text-slate-400 mb-1">Email</label>
+            <label htmlFor="signup-email" className="block text-sm text-slate-400 mb-1">Email</label>
             <input
+              id="signup-email"
               type="email"
               required
               value={email}
@@ -103,8 +107,9 @@ export default function SignupForm() {
             />
           </div>
           <div>
-            <label className="block text-sm text-slate-400 mb-1">Password</label>
+            <label htmlFor="signup-password" className="block text-sm text-slate-400 mb-1">Password</label>
             <input
+              id="signup-password"
               type="password"
               required
               minLength={8}
@@ -136,7 +141,6 @@ export default function SignupForm() {
               </button>
             ))}
           </div>
-          {error && <p className="text-red-400 text-sm text-center">{error}</p>}
           <Button type="submit" loading={loading}>Enter the Studios ⚡</Button>
           <button type="button" onClick={() => setStep('details')} className="text-slate-500 text-sm hover:text-slate-300 transition-colors">
             ← Back
